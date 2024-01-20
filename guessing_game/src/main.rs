@@ -8,7 +8,7 @@ fn main() {
     let secret_number = rand::thread_rng().gen_range(1..=100);    // this is for generating a random number between 1 and 100
 
     loop {   // this is a loop that will keep running until the user guesses the correct number or we break out of the loop
-        println!("Please input your guess.");
+        println!("Please input your guess with in 0 to 100.");
 
         let mut guess = String::new();  // declaring a new variable called guess with the type String
 
