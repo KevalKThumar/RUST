@@ -6,6 +6,7 @@ pub fn variable() {
         println!("The value of x is: {}", x);
         x=6;
         println!("The Value after change is:: {}",x)
+        
     */
 
     /*!const
@@ -13,10 +14,12 @@ pub fn variable() {
         // const MAX_POINTS: u32 = 4294967296; //error due to overflow range of u32 type is 0 to 4294967295, full name is unsigned 32 bit integer
          const MAX_POINTS: u32 = 4294967295; // it can not change after decreting it is by default immuttable
         println!("The value of MAX_POINTS is: {}", MAX_POINTS);
+        // it only use predifined value it can not assign the value at runtime
+        // it can be use in any scope of the program
      */
 
     // Shadowing
-
+    // in the shadowing we can change the value of the variable and also change the type of the variable that is not possible in the let and const with mut.
     // let mut x = 5;
     // x = x + 1;
     // println!("The value of x before shadowing is: {}", x);
