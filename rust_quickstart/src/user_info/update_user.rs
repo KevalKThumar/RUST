@@ -38,7 +38,7 @@ pub async fn update_user(
 
             // Ensure there is something to update
             if update_doc.is_empty() {
-                return (StatusCode::BAD_REQUEST, "No fields provided for update").into_response();
+                return (StatusCode::BAD_REQUEST,).into_response();
             }
 
             let update = doc! { "$set": update_doc };
@@ -47,9 +47,17 @@ pub async fn update_user(
             match collection.update_one(filter, update).await {
                 Ok(update_result) => {
                     if update_result.matched_count == 0 {
-                        (StatusCode::NOT_FOUND, "User not found").into_response()
+                        (
+                            StatusCode::NOT_FOUND,
+                            Json(doc! { "message": format!("User not found") }),
+                        )
+                            .into_response()
                     } else {
-                        (StatusCode::OK, "User updated successfully").into_response()
+                        (
+                            StatusCode::OK,
+                            Json(doc! { "message": format!("User updated successfully") }),
+                        )
+                            .into_response()
                     }
                 }
                 Err(err) => {

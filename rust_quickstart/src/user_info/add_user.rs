@@ -23,7 +23,7 @@ pub async fn add_user(
             // Handle errors gracefully
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
-                Json(doc! { "error": format!("Failed to insert user: {}", err) }),
+                Json(doc! { "message": format!("Failed to insert user: {}", err) }),
             )
                 .into_response()
         }

@@ -14,7 +14,7 @@ pub async fn get_all_users(client: Client) -> impl IntoResponse {
         }
         Err(err) => (
             StatusCode::INTERNAL_SERVER_ERROR,
-            Json(doc! { "error": format!("Failed to fetch users: {}", err) }),
+            Json(doc! { "message": format!("Failed to fetch users: {}", err) }),
         )
             .into_response(),
     }

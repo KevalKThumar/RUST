@@ -14,17 +14,33 @@ pub async fn delete_user(
         Ok(object_id) => match my_coll.delete_one(doc! { "_id": object_id }).await {
             Ok(delete_result) => {
                 if delete_result.deleted_count > 0 {
-                    (StatusCode::OK, "User deleted successfully").into_response()
+                    (
+                        StatusCode::OK,
+                        Json(doc! { "message": format!("User deleted successfully") }),
+                    )
+                        .into_response()
                 } else {
-                    (StatusCode::NOT_FOUND, "User not found").into_response()
+                    (
+                        StatusCode::NOT_FOUND,
+                        Json(doc! { "message": format!("User not found") }),
+                    )
+                        .into_response()
                 }
             }
             Err(err) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
-                Json(doc! { "error": format!("Failed to delete user: {}", err) }),
+                Json(doc! { "message": format!("Failed to delete user: {}", err), }),
             )
                 .into_response(),
         },
-        Err(_) => (StatusCode::BAD_REQUEST, "Invalid ID format").into_response(),
+        Err(_) => (
+            StatusCode::BAD_REQUEST,
+            (
+                StatusCode::OK,
+                Json(doc! { "message": format!("Invalid ID format") }),
+            )
+                .into_response(),
+        )
+            .into_response(),
     }
 }
