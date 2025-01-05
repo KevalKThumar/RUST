@@ -10,7 +10,7 @@ pub async fn get_user(
     Path(id): Path<String>, // Extract `id` from the URL path
     client: Client,
 ) -> impl IntoResponse {
-    let my_coll: Collection<User> = client.database("sample_restaurants").collection("users");
+    let my_coll: Collection<User> = client.database("llm").collection("users");
 
     match ObjectId::parse_str(&id) {
         Ok(object_id) => match my_coll.find_one(doc! { "_id": object_id }).await {

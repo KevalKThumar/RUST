@@ -5,7 +5,7 @@ use futures::TryStreamExt;
 use mongodb::{Client, Collection};
 /// Function to get all users from the database
 pub async fn get_all_users(client: Client) -> impl IntoResponse {
-    let my_coll: Collection<User> = client.database("sample_restaurants").collection("users");
+    let my_coll: Collection<User> = client.database("llm").collection("users");
 
     match my_coll.find(doc! {}).await {
         Ok(cursor) => {

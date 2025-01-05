@@ -10,7 +10,7 @@ pub async fn update_user(
     Json(update_data): Json<User>, // Extract partial update data
     client: Client,                // MongoDB client
 ) -> impl IntoResponse {
-    let collection: Collection<User> = client.database("sample_restaurants").collection("users");
+    let collection: Collection<User> = client.database("llm").collection("users");
 
     // Parse the `id` into an `ObjectId`
     match ObjectId::parse_str(&id) {

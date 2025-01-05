@@ -8,7 +8,7 @@ pub async fn add_user(
     Json(user): Json<User>, // Extract user data from the request body
     client: Client,
 ) -> impl IntoResponse {
-    let my_coll: Collection<User> = client.database("sample_restaurants").collection("users");
+    let my_coll: Collection<User> = client.database("llm").collection("users");
 
     match my_coll.insert_one(user).await {
         Ok(res) => {
