@@ -21,7 +21,7 @@
  *  Accessing data in stack is faster than accessing data in heap. Because in stack it will store in sequence and we can access it easily. but in heap it will store in random memory location. So, it will take time to access data. and it follow the pointer to access the data which is stored in stack.
  *
  * Ownership Rules:
- *  - Each value in Rust has a variable that’s called its owner.
+ * - Each value in Rust has a variable that’s called its owner.
  * - There can only be one owner at a time.
  * - When the owner goes out of scope, the value will be dropped.
  */
@@ -39,10 +39,10 @@ fn main() {
     // let (s, length) = calculate_length(s);
     // println!("The length of '{}' is {}.", s, length);
     // --------------------------------------------------------------- mutable reference
-    // let mut s = String::from("Keval K Thumer");
-    // s.push_str(", How are you?");
-    // let s1 = change(&mut s);
-    // println!("{}", s1);
+    let mut s = String::from("Keval K Thumer");
+    s.push_str(", How are you?");
+    let s1 = change(&mut s);
+    println!("{}", s1);
     /*    TODO: Aim::write a function that takes a string of words separated by spaces and returns the first word it finds in that string. If the function doesn’t find a space in the string, the whole string must be one word, so the entire string should be returned.
     */
 
@@ -77,7 +77,10 @@ fn first_word_slice(s: &str) -> &str {
     }
     &s[..]
 }
-
+fn change(s: &mut String) -> &mut String {
+    s.push_str(", world");
+    s
+}
 // normal way
 fn first_word_normal(s: &String) -> usize {
     let bytes = s.as_bytes();
