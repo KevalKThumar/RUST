@@ -32,7 +32,7 @@ pub fn method_syntax() {
         height: 20,
     };
     println!("The area of Rectangle {:#?} is {}.", rect, rect.area());
-
+    
     let ract2 = Rectangle {
         length: 20,
         height: 30,
